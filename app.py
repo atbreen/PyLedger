@@ -1,41 +1,13 @@
 import streamlit as st
 import pandas as pd
+from game import Game
+from game_library import GameLibrary
 
-class Game:
-    def __init__(self, title, console, media_type, platform, players):
-        self.title = title
-        self.console = console
-        self.media_type = media_type
-        self.platform = platform
-        self.players = players
 
-class GameLibrary:
-    def __init__(self):
-        self.games = []
-
-    def add_game(self, game):
-        self.games.append(game)
-
-    def delete_game(self, title):
-        self.games = [g for g in self.games if g.title != title]
-
-    def edit_game(self, title, attribute, value):
-        for game in self.games:
-            if game.title == title:
-                setattr(game, attribute, value)
-
-    def query_by_attribute(self, attribute, value):
-        return [game for game in self.games if getattr(game, attribute) == value]
-
-    def to_dataframe(self):
-        data = {'Title': [], 'Console': [], 'Media Type': [], 'Platform': [], 'Number of Players': []}
-        for game in self.games:
-            data['Title'].append(game.title)
-            data['Console'].append(game.console)
-            data['Media Type'].append(game.media_type)
-            data['Platform'].append(game.platform)
-            data['Number of Players'].append(game.players)
-        return pd.DataFrame(data)
+    # TODO: make an export button that exports to CSV
+    # TODO: query the data frame by value attribute
+    # TODO: stretch - have the queries return a new dataframe
+    # TODO: add charts!
 
 # Streamlit App
 def main():
@@ -44,12 +16,10 @@ def main():
     game_library = st.session_state.game_library
 
     st.title("PyLedger")
-    
 
-    # TODO: make an export button that exports to CSV
-    # TODO: query the data frame by value attribute
-    # TODO: stretch - have the queries return a new dataframe
-    # TODO: add charts!
+    # def show_platform(new_console):
+    #     if new_console == "PC":
+    #          return st.selectbox("Platform",("Steam", "Epic Games", "Ubisoft Connect", "GOG Galaxy", "Electronic Arts",), index=None, placeholder="Platform",)
 
     if len(game_library.games) > 0:
         st.header("Game Library")
@@ -70,10 +40,10 @@ def main():
     with st.form('add', clear_on_submit=True):
         st.header("Add New Game")
         new_title = st.text_input("Title")
-        new_console = st.text_input("Console")
-        new_media_type = st.text_input("Media Type")
-        new_platform = st.text_input("Platform")
-        new_players = st.text_input("Number of Players")
+        new_console = st.selectbox("Console",("PC", "PlayStation 1", "PlayStation 2", "PlayStation 3", "PlayStation 4", "PlayStation 5", "Nintendo Entertainment System", "Super Nintendo", "Nintendo 64", "Game Cube", "Wii", "GameBoy", "Nintendo DS/3DS", "Switch", "Atari", "Atari 2600",), index=None, placeholder="Console",)
+        new_platform = st.selectbox("Platform",("N/A", "Steam", "Epic Games", "Ubisoft Connect", "GOG Galaxy", "Electronic Arts",), index=None, placeholder="Platform",)
+        new_media_type = st.selectbox("Media Type",("Digital", "Disc", "Cartridge"), index=None, placeholder="Media Type",)
+        new_players = st.selectbox("Players",("Single Player", "MMO", "Split Screen CO-OP", "Online Multiplayer",), index=None, placeholder="Players",)
         submitted = st.form_submit_button("Add Game")
         if submitted:
             game_library.add_game(Game(new_title, new_console, new_media_type, new_platform, new_players))
