@@ -5,9 +5,10 @@ from game_library import GameLibrary
 
 
     # TODO: make an export button that exports to CSV
+    # TODO: add edit and delete functionality
     # TODO: query the data frame by value attribute
     # TODO: stretch - have the queries return a new dataframe
-    # TODO: add charts!
+    # TODO: add charts/graphs!
 
 # Streamlit App
 def main():
