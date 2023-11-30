@@ -5,18 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Flask",
+            "name": "Python: Streamlit",
             "type": "python",
             "request": "launch",
-            "module": "flask",
-            "env": {
-                "FLASK_APP": "app.py",
-                "FLASK_DEBUG": "1"
-            },
+            "module": "streamlit",
             "args": [
                 "run",
-                "--no-debugger",
-                "--no-reload"
+                "app.py"
             ],
             "jinja": true,
             "justMyCode": true
