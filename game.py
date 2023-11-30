@@ -5,6 +5,7 @@ class Game:
     platforms = ("N/A", "Steam", "Epic Games", "Ubisoft Connect", "GOG Galaxy", "Electronic Arts",)
     media_types = ("Digital", "Disc", "Cartridge")
     player_types = ("Single Player", "MMO", "Split Screen CO-OP", "Online Multiplayer",)
+    stat_metrics = ["Title", "Console", "Media Type", "Platform", "Players"]
     
     def __init__(self, title, console, media_type, platform, players):
         self.title = title

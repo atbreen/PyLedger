@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 from game import Game
 from game_library import GameLibrary
 from save_changes import save_changes
@@ -34,9 +35,9 @@ def main():
                     "Console", Game.consoles, index=None, placeholder="Console",)
                 search_platform = st.selectbox("Platform", Game.platforms, index=None, placeholder="Platform",)
                 search_media_type = st.selectbox(
-                    "Media Type", ("Digital", "Disc", "Cartridge"), index=None, placeholder="Media Type",)
+                    "Media Type", Game.media_types, index=None, placeholder="Media Type",)
                 search_players = st.selectbox(
-                    "Players", ("Single Player", "MMO", "Split Screen CO-OP", "Online Multiplayer",), index=None, placeholder="Players",)
+                    "Players", Game.player_types, index=None, placeholder="Players",)
                 submitted = st.form_submit_button("Search")
                 # Query Table
                 if submitted:
@@ -82,6 +83,45 @@ def main():
                 game_library.add_game(
                     Game(new_title, new_console, new_media_type, new_platform, new_players))
                 st.rerun()
+
+    # with st.expander("Game Library Stats"):
+    #         with st.form('stats'):
+    #             stat = df
+    #             game_stat_select = st.selectbox("Select a Metric to Compare", Game.stat_metrics)
+                
+    #             if game_stat_select == "Title":
+    #                 stat_title = st.text_input("Title")
+    #                 if stat_title:
+    #                     stat = stat[stat["title"].str.contains(
+    #                         stat_title, case=False, regex=False)]
+                
+    #             elif game_stat_select == "Console":
+    #                 stat_console = st.selectbox("Console", Game.consoles, index=None, placeholder="Consoles")
+    #                 if stat_console:
+    #                     stat = stat[stat["console"] == stat_console]
+
+                
+    #             elif game_stat_select == "Platform":
+    #                 stat_platform = st.selectbox("Platform", Game.platforms, index=None, placeholder="Platforms")
+    #                 if stat_platform:
+    #                     stat = stat[stat["platform"] == stat_platform]
+                
+    #             elif game_stat_select == "Media Type":
+    #                 stat_media_types = st.selectbox("Media Types", Game.media_types, index=None, placeholder="Media Types")
+    #                 if stat_media_types:
+    #                     stat = stat[stat["media_types"] == stat_media_types]
+                
+    #             elif game_stat_select == "Players":
+    #                 stat_players = st.selectbox("Platform", Game.player_types, index=None, placeholder="Players")
+    #                 if stat_players:
+    #                     stat = stat[stat["players"] == stat_players]
+                
+    #             # Stats Graph
+    #             submitted = st.form_submit_button("Submit")
+    #             if submitted:
+    #                 # Add Dictionary Logic Here
+    #                 pass
+
 
 
 if __name__ == "__main__":

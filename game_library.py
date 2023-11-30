@@ -23,3 +23,17 @@ class GameLibrary:
             game_data['platform'].append(game.platform)
             game_data['players'].append(game.players)
         return pd.DataFrame(game_data)
+    
+    def to_graph(self):
+        game_data = {'title': [], 'console': [],
+                'media_type': [], 'platform': [], 'players': []}
+        for game in self.games:
+            game_data['title'].append(game.title)
+            game_data['console'].append(game.console)
+            game_data['media_type'].append(game.media_type)
+            game_data['platform'].append(game.platform)
+            game_data['players'].append(game.players)
+        return pd.DataFrame(game_data)
+
+    def create_stats(self):
+        pass
