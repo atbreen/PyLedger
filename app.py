@@ -8,8 +8,6 @@ from save_changes import save_changes
 # TODO : (stretch) add charts "this many of this type of game..." piechart?
 
 # Streamlit App
-
-
 def main():
     if "game_library" not in st.session_state:
         st.session_state.game_library = GameLibrary()
@@ -18,25 +16,29 @@ def main():
     st.title("PyLedger")
 
     if len(game_library.games) > 0:
+        # Game Library
         st.header("Game Library")
         df = game_library.to_dataframe()
-        # TODO: finish column_configs
         st.data_editor(df, use_container_width=True, num_rows="dynamic", key="editor", on_change=save_changes, column_config={
             "title": st.column_config.TextColumn("Title", required=True),
-            "console": st.column_config.SelectboxColumn("Console", required=True, options=Game.consoles)
+            "console": st.column_config.SelectboxColumn("Console", required=True, options=Game.consoles),
+            "platform": st.column_config.SelectboxColumn("Platform", required=False, options=Game.platforms),
+            "media_type": st.column_config.SelectboxColumn("Media Type", required=True, options=Game.media_types),
+            "players": st.column_config.SelectboxColumn("Players", required=True, options=Game.player_types)
         })
+        # Search Games
         with st.expander("Search Games"):
             with st.form('query'):
                 search_title = st.text_input("Title")
                 search_console = st.selectbox(
                     "Console", Game.consoles, index=None, placeholder="Console",)
-                search_platform = st.selectbox("Platform", ("N/A", "Steam", "Epic Games", "Ubisoft Connect",
-                                               "GOG Galaxy", "Electronic Arts",), index=None, placeholder="Platform",)
+                search_platform = st.selectbox("Platform", Game.platforms, index=None, placeholder="Platform",)
                 search_media_type = st.selectbox(
                     "Media Type", ("Digital", "Disc", "Cartridge"), index=None, placeholder="Media Type",)
                 search_players = st.selectbox(
                     "Players", ("Single Player", "MMO", "Split Screen CO-OP", "Online Multiplayer",), index=None, placeholder="Players",)
                 submitted = st.form_submit_button("Search")
+                # Query Table
                 if submitted:
                     query = df
                     if search_title:
@@ -52,6 +54,7 @@ def main():
                         query = query[query["players"] == search_players]
                     st.write(query)
     else:
+        # Upload CSV
         with st.form('upload', clear_on_submit=True):
             st.header("Upload CSV")
             csv_file = st.file_uploader("CSV File", type="csv")
@@ -64,17 +67,16 @@ def main():
                         row['title'], row['console'], row['media_type'], row['platform'], row['players']))
                 st.rerun()
         st.text("--- OR ---")
+        # Add New Game
     with st.expander("Add New Game"):
         with st.form('add', clear_on_submit=True):
             new_title = st.text_input("Title")
             new_console = st.selectbox(
                 "Console", Game.consoles, index=None, placeholder="Console",)
-            new_platform = st.selectbox("Platform", ("N/A", "Steam", "Epic Games", "Ubisoft Connect",
-                                        "GOG Galaxy", "Electronic Arts",), index=None, placeholder="Platform",)
+            new_platform = st.selectbox("Platform", Game.platforms, index=None, placeholder="Platform",)
             new_media_type = st.selectbox(
-                "Media Type", ("Digital", "Disc", "Cartridge"), index=None, placeholder="Media Type",)
-            new_players = st.selectbox("Players", ("Single Player", "MMO", "Split Screen CO-OP",
-                                       "Online Multiplayer",), index=None, placeholder="Players",)
+                "Media Type", Game.media_types, index=None, placeholder="Media Type",)
+            new_players = st.selectbox("Players", Game.player_types, index=None, placeholder="Players",)
             submitted = st.form_submit_button("Add Game")
             if submitted:
                 game_library.add_game(

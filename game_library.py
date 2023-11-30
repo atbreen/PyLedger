@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 class GameLibrary:
     def __init__(self):
         self.games = []
@@ -15,12 +14,12 @@ class GameLibrary:
         setattr(self.games[idx], attribute, value)
 
     def to_dataframe(self):
-        data = {'title': [], 'console': [],
+        game_data = {'title': [], 'console': [],
                 'media_type': [], 'platform': [], 'players': []}
         for game in self.games:
-            data['title'].append(game.title)
-            data['console'].append(game.console)
-            data['media_type'].append(game.media_type)
-            data['platform'].append(game.platform)
-            data['players'].append(game.players)
-        return pd.DataFrame(data)
+            game_data['title'].append(game.title)
+            game_data['console'].append(game.console)
+            game_data['media_type'].append(game.media_type)
+            game_data['platform'].append(game.platform)
+            game_data['players'].append(game.players)
+        return pd.DataFrame(game_data)
