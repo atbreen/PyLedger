@@ -1,17 +1,21 @@
 import streamlit as st
-# import matplotlib.pyplot as plt
+import altair as alt
+
 from game import Game
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-
-# def create_stats_chart(data, xlabel, ylabel):
-#     plt.bar(data.keys(), data.values())
-#     plt.xlabel(xlabel)
-#     plt.ylabel(ylabel)
-#     plt.title('Game Library Stats')
-#     st.pyplot()
-
+def create_stats_chart(df, game_stat_select):
+    bars = (
+        alt.Chart(df)
+        .mark_bar()
+        .encode(
+            alt.X("count()").title(None),
+            alt.Y(game_stat_select).title(None),
+            color=game_stat_select
+        )
+    )
+    st.altair_chart(bars, use_container_width=True)
 
 def save_changes():
     state = st.session_state
