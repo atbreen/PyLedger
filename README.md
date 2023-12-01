@@ -5,7 +5,7 @@
 ### Dependencies:
 
 ```bash
-pip install pandas streamlit
+pip install pandas streamlit matplotlib.pyplot
 ```
 
 ### Run Application:
@@ -15,4 +15,5 @@ python -m streamlit run app.py
 ```
 
 ### Link to Application:
+
 [PyLedger](https://pyledger.streamlit.app/)

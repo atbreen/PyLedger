@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 class GameLibrary:
     def __init__(self):
         self.games = []

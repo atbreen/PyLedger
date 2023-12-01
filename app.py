@@ -64,7 +64,6 @@ def main():
                 # Stats Graph
                 submitted = st.form_submit_button("Submit")
                 if submitted:
-                    u.create_stats_chart(df, game_stat_select)
     else:
         # Upload CSV
         with st.form('upload', clear_on_submit=True):
