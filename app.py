@@ -1,3 +1,4 @@
+import altair as alt
 import streamlit as st
 import pandas as pd
 import utils as u
@@ -59,14 +60,11 @@ def main():
             with st.form('stats'):
                 game_stat_select = st.selectbox(
                     "Select a Metric to Compare", Game.stat_metrics)
-
                 value_counts_series = df[game_stat_select].value_counts()
-                result_dict = value_counts_series.to_dict()
                 # Stats Graph
                 submitted = st.form_submit_button("Submit")
-
                 if submitted:
-                    u.create_stats_chart(result_dict, "", "")
+                    u.create_stats_chart(df, game_stat_select)
     else:
         # Upload CSV
         with st.form('upload', clear_on_submit=True):
