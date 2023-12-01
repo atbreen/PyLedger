@@ -14,5 +14,5 @@ pip install pandas streamlit
 python -m streamlit run app.py
 ```
 
-### Link to Application
+### Link to Application:
 [PyLedger](https://pyledger.streamlit.app/)
