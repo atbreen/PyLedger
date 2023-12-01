@@ -55,18 +55,18 @@ def main():
                     st.write(query)
 
         # Game Library Stats
-        with st.expander("Game Library Stats"):
-            with st.form('stats'):
-                game_stat_select = st.selectbox(
-                    "Select a Metric to Compare", Game.stat_metrics)
+        # with st.expander("Game Library Stats"):
+        #     with st.form('stats'):
+        #         game_stat_select = st.selectbox(
+        #             "Select a Metric to Compare", Game.stat_metrics)
 
-                value_counts_series = df[game_stat_select].value_counts()
-                result_dict = value_counts_series.to_dict()
-                # Stats Graph
-                submitted = st.form_submit_button("Submit")
+        #         value_counts_series = df[game_stat_select].value_counts()
+        #         result_dict = value_counts_series.to_dict()
+        #         # Stats Graph
+        #         submitted = st.form_submit_button("Submit")
 
-                if submitted:
-                    u.create_stats_chart(result_dict, "", "")
+        #         if submitted:
+        #             u.create_stats_chart(result_dict, "", "")
     else:
         # Upload CSV
         with st.form('upload', clear_on_submit=True):
