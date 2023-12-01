@@ -60,7 +60,6 @@ def main():
             with st.form('stats'):
                 game_stat_select = st.selectbox(
                     "Select a Metric to Compare", Game.stat_metrics)
-                value_counts_series = df[game_stat_select].value_counts()
                 # Stats Graph
                 submitted = st.form_submit_button("Submit")
                 if submitted:
