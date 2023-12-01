@@ -1,5 +1,16 @@
 import streamlit as st
+import matplotlib.pyplot as plt
 from game import Game
+
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
+
+def create_stats_chart(data, xlabel, ylabel):
+    plt.bar(data.keys(), data.values())
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title('Game Library Stats')
+    st.pyplot()
 
 
 def save_changes():
