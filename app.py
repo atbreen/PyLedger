@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import plotly.express as px
 import utils as u
 from game import Game
 from game_library import GameLibrary
