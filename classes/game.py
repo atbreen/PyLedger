@@ -6,12 +6,16 @@ class Game:
                  "GOG Galaxy", "Electronic Arts",)
     media_types = ("Digital", "Disc", "Cartridge")
     player_types = ("Single Player", "MMO",
-                    "Split Screen CO-OP", "Online Multiplayer",)
-    stat_metrics = ["console", "media_type", "platform", "players"]
+                    "Split Screen CO-OP", "Online Multiplayer", "Cooperative", "PVP")
+    stat_metrics = ("console", "media_type", "platform", "players")
 
-    def __init__(self, title, console, media_type, platform, players):
+    def __init__(self, title: str, console: str, media_type: str, platform: str, players: str):
         self.title = title
         self.console = console
         self.media_type = media_type
         self.platform = platform
         self.players = players
+
+    def get_logo(self) -> str:
+        # Default Logo
+        return "/app/static/default.png"
