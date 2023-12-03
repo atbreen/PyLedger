@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import utils as u
 from classes.game import Game
-from game_library import GameLibrary
+from classes.game_library import GameLibrary
 
 # Streamlit App
 
