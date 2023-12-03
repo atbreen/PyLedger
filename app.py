@@ -2,24 +2,26 @@ import altair as alt
 import streamlit as st
 import pandas as pd
 import utils as u
-from game import Game
+from classes.game import Game
 from game_library import GameLibrary
 
 # Streamlit App
 
 
 def main():
+    # Runs first time through when no game_library object exists.
     if "game_library" not in st.session_state:
         st.session_state.game_library = GameLibrary()
     game_library = st.session_state.game_library
 
     st.title("PyLedger")
-
+    # Runs when game_library is not empty.
     if len(game_library.games) > 0:
         # Game Library
         st.header("Game Library")
         df = game_library.to_dataframe()
         st.data_editor(df, use_container_width=True, num_rows="dynamic", key="editor", on_change=u.save_changes, column_config={
+            "logo": st.column_config.ImageColumn("Logo"),
             "title": st.column_config.TextColumn("Title", required=True),
             "console": st.column_config.SelectboxColumn("Console", required=True, options=Game.consoles),
             "platform": st.column_config.SelectboxColumn("Platform", required=False, options=Game.platforms),
@@ -74,7 +76,7 @@ def main():
             if submitted and csv_file is not None:
                 df = pd.read_csv(csv_file)
                 for _, row in df.iterrows():
-                    game_library.add_game(Game(
+                    game_library.add_game(u.create_game(
                         row['title'], row['console'], row['media_type'], row['platform'], row['players']))
                 st.rerun()
         st.text("--- OR ---")
@@ -93,7 +95,7 @@ def main():
             submitted = st.form_submit_button("Add Game")
             if submitted:
                 game_library.add_game(
-                    Game(new_title, new_console, new_media_type, new_platform, new_players))
+                    u.create_game(new_title, new_console, new_media_type, new_platform, new_players))
                 st.rerun()
 
 
