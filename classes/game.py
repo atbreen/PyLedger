@@ -18,4 +18,4 @@ class Game:
 
     def get_logo(self) -> str:
         # Default Logo
-        return "/app/static/default.png"
+        return "https://tinypic.host/images/2023/12/03/default.png"

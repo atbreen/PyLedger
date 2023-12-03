@@ -6,4 +6,4 @@ class Playstation(Game):
                 "PlayStation 3", "PlayStation 4", "PlayStation 5")
 
     def get_logo(self) -> str:
-        return "/app/static/playstation.png"
+        return "https://tinypic.host/images/2023/12/03/playstation.png"
