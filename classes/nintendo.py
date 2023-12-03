@@ -6,4 +6,4 @@ class Nintendo(Game):
                 "Super Nintendo", "Nintendo 64", "Game Cube", "Wii", "GameBoy", "Nintendo DS/3DS", "Switch")
 
     def get_logo(self) -> str:
-        return "/app/static/nintendo.png"
+        return "https://tinypic.host/images/2023/12/03/nintendo.png"

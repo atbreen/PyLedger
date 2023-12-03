@@ -5,4 +5,4 @@ class Atari(Game):
     consoles = ("Atari", "Atari 2600")
 
     def get_logo(self) -> str:
-        return "/app/static/atari.png"
+        return "https://tinypic.host/images/2023/12/03/atari.png"
