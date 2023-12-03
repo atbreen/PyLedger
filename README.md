@@ -32,3 +32,8 @@ _Title_, _Console_, _Platform_, _Media Type_, and _Players_.
 The source code can be customized to the user's specific needs as far as attributes of each game that they wish to use.
 
 **Pyledger** also has the ability to search through the gaming library, as well as portay stats concerning the content of the library.
+
+![Atari](/static/atari.png "Atari")
+![PlayStation](/static/playstation.png "PlayStation")
+![Nintendo](/static/nintendo.png "Nintendo")
+![PC](/static/pc.png "PC")
