@@ -55,7 +55,8 @@ def main():
                         query = query[query["media_type"] == search_media_type]
                     if search_players:
                         query = query[query["players"] == search_players]
-                    st.write(query)
+                    st.write(
+                        query[["title", "console", "platform", "media_type", "players"]])
 
         # Game Library Stats
         with st.expander("Game Library Stats"):
