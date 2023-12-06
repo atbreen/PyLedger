@@ -5,7 +5,7 @@
 ### Dependencies:
 
 ```bash
-pip install pandas streamlit matplotlib.pyplot
+pip install pandas streamlit altair
 ```
 
 ### Run Application:
