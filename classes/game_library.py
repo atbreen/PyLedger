@@ -1,5 +1,6 @@
 import pandas as pd
 from classes.game import Game
+import utils as u
 
 
 class GameLibrary:
@@ -18,7 +19,11 @@ class GameLibrary:
 
     def edit_game(self, idx: int, attribute: str, value: str):
         """Edits a game by index in the library"""
-        setattr(self.games[idx], attribute, value)
+        if attribute == "console":
+            self.games[idx] = u.create_game(
+                self.games[idx].title, value, self.games[idx].media_type, self.games[idx].platform, self.games[idx].players)
+        else:
+            setattr(self.games[idx], attribute, value)
 
     def to_dataframe(self) -> pd.DataFrame:
         """Creates a dataframe of GameLibrary"""
