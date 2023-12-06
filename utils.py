@@ -50,10 +50,12 @@ def create_game(title: str, console: str, media_type: str, platform: str, player
     """Creates a Game object"""
     if console in Playstation.consoles:
         return Playstation(title, console, media_type, platform, players)
-    if console in Nintendo.consoles:
+    elif console in Nintendo.consoles:
         return Nintendo(title, console, media_type, platform, players)
-    if console in Atari.consoles:
+    elif console in Atari.consoles:
         return Atari(title, console, media_type, platform, players)
-    if console in PC.consoles:
+    elif console in PC.consoles:
+        print(f"console, {console}")
         return PC(title, console, media_type, platform, players)
-    return Game(title, console, media_type, platform, players)
+    else:
+        return Game(title, console, media_type, platform, players)

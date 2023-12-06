@@ -23,14 +23,14 @@ def main():
         st.data_editor(df, use_container_width=True, num_rows="dynamic", key="editor", on_change=u.save_changes, column_config={
             "logo": st.column_config.ImageColumn("Logo"),
             "title": st.column_config.TextColumn("Title", required=True),
-            "console": st.column_config.SelectboxColumn("Console", required=True, options=Game.consoles),
+            "console": st.column_config.SelectboxColumn("Console", required=False, options=Game.consoles),
             "platform": st.column_config.SelectboxColumn("Platform", required=False, options=Game.platforms),
             "media_type": st.column_config.SelectboxColumn("Media Type", required=True, options=Game.media_types),
             "players": st.column_config.SelectboxColumn("Players", required=True, options=Game.player_types)
         })
         # Search Games
         with st.expander("Search Games"):
-            with st.form('query'):
+            with st.form('query', border=False):
                 search_title = st.text_input("Title")
                 search_console = st.selectbox(
                     "Console", Game.consoles, index=None, placeholder="Console",)
@@ -55,12 +55,12 @@ def main():
                         query = query[query["media_type"] == search_media_type]
                     if search_players:
                         query = query[query["players"] == search_players]
-                    st.write(
-                        query[["title", "console", "platform", "media_type", "players"]])
+                    st.dataframe(query, column_config={
+                        "logo": None}, use_container_width=True)
 
         # Game Library Stats
         with st.expander("Game Library Stats"):
-            with st.form('stats'):
+            with st.form('stats', border=False):
                 game_stat_select = st.selectbox(
                     "Select a Metric to Compare", Game.stat_metrics)
                 # Stats Graph
@@ -83,7 +83,7 @@ def main():
         st.text("--- OR ---")
     # Add New Game
     with st.expander("Add New Game"):
-        with st.form('add', clear_on_submit=True):
+        with st.form('add', clear_on_submit=True, border=False):
             new_title = st.text_input("Title")
             new_console = st.selectbox(
                 "Console", Game.consoles, index=None, placeholder="Console",)
