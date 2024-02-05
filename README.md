@@ -18,6 +18,10 @@ python -m streamlit run app.py
 
 [PyLedger](https://pyledger.streamlit.app/)
 
+### Link to Sample .csv
+
+[Sample Library](https://drive.google.com/file/d/1ePjuJj88ekAlFs1NfWrqU7mfcXVKBjbb/view?usp=sharing)
+
 ### Welcome to PyLedger:
 
 **PyLedger** is a Gaming Library Management System.
